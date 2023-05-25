@@ -2,7 +2,9 @@ import React from 'react'
 
 function Add() {
   return (
-    <div>Add</div>
+    <div>
+    <h1>Add</h1>
+ </div>
   )
 }
 

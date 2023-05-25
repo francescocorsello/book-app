@@ -1,5 +1,6 @@
 import  express  from "express";
-import mysql from "mysql"
+import mysql from "mysql";
+import cors from "cors";
 
 const app = express();
 
@@ -8,12 +9,12 @@ const db = mysql.createConnection({
     user:"root",
     password:"password",
     database:"test"
-
 })
 
 // Express Middleware
 
 app.use(express.json())
+app.use(cors())
 
 // Test Api
 
