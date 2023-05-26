@@ -9,7 +9,7 @@ function Books() {
     useEffect(() =>{
         const fetchAllBooks = async () => {
             try {
-                const res = await axios.get("http://localhost:8801/books")
+                const res = await axios.get("http://localhost:8800/books")
                 setBooks(res.data);
                 console.log(res)
             } catch (err) {
@@ -28,6 +28,8 @@ function Books() {
                 <h2>{book.title}</h2>
                 <p>{book.desc}</p>
                 <span>{book.price}</span>
+                <button className='delete'>Delete</button>
+                <button className='update'>Update</button>
             </div>
         ))}
        </div>
