@@ -12,6 +12,19 @@
         gap: 10px;
 }
 
+.addButton{
+    border: none;
+    padding: 10px;
+    margin-top: 40px;
+    background-color: teal;
+
+    .linkButton{
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+    }
+}
+
 .book{
     flex: 1;
     display: flex;
@@ -41,6 +54,10 @@ img{
     background-color: white;
     cursor: pointer;
     color: rgb(139, 139, 234);
+
+    .updateLink{
+        text-decoration: none;
+    }
 }
 
 .form{

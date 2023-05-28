@@ -38,12 +38,12 @@ function Books() {
                 <p>{book.desc}</p>
                 <span>{book.price}</span>
                 <button className='delete' onClick={() => handleDelete(book.id)}>Delete</button>
-                <button className='update'> <Link to={`/update/${book.id}`}>Update</Link></button>
+                <button className='update'> <Link className='updateLink' to={`/update/${book.id}`}>Update</Link></button>
             </div>
         ))}
        </div>
-        <button>
-        <Link to="/add">Add new book</Link>
+        <button className='addButton'>
+        <Link className='linkButton' to="/add">Add new book</Link>
         </button>
 
     </div>
