@@ -1,14 +1,17 @@
+import * as dotenv from 'dotenv'
+dotenv.config()
 import  express  from "express";
 import mysql from "mysql";
 import cors from "cors";
 
+
 const app = express();
 
 const db = mysql.createConnection({
-    host:"localhost",
-    user:"root",
-    password:"password",
-    database:"test"
+    host: process.env.DB_HOST,
+    user: process.env.DB_USERNAME,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_DBNAME
 });
 
 // Express Middleware
@@ -78,3 +81,4 @@ app.delete("/books/:id", (req, res) => {
 app.listen(8800, () => {
     console.log("YES! Connected to Backend!!!")
 } );
+
