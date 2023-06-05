@@ -3,13 +3,14 @@ import axios from 'axios'
 import { Link } from 'react-router-dom'
 
 
+
 function Books() {
     const [books, setBooks] = useState([])
 
     useEffect(() =>{
         const fetchAllBooks = async () => {
             try {
-                const res = await axios.get("http://localhost:8800/books")
+                const res = await axios.get(process.env.REACT_APP_DB_ENDPOINT)
                 setBooks(res.data);
                 console.log(res)
             } catch (err) {
@@ -21,7 +22,7 @@ function Books() {
 
    const handleDelete  = async (id) => {
         try {
-            await axios.delete("http://localhost:8800/books/"+id)
+            await axios.delete(process.env.REACT_APP_DB_ENDPOINT+id)
             window.location.reload()
         } catch (err) {
             console.log(err)

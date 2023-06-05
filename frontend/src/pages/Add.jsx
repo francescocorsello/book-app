@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router';
 
+
 function Add() {
     const[book, setBook] = useState({
         title:"",
@@ -19,7 +20,7 @@ function Add() {
   const handleClick = async e => {
     e.preventDefault()
     try {
-        await axios.post("http://localhost:8800/books", book)
+        await axios.post(process.env.REACT_APP_DB_ENDPOINT, book)
         navigate("/")
     } catch (err) {
         console.log(err)
