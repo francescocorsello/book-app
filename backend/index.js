@@ -3,10 +3,14 @@ dotenv.config()
 import  express  from "express";
 import mysql from "mysql";
 import cors from "cors";
-
+import multer from "multer";
 
 const app = express();
+// Express Middleware
+app.use(express.json());
+app.use(cors());
 
+// Database connection
 const db = mysql.createConnection({
     host: process.env.DB_HOST,
     user: process.env.DB_USERNAME,
@@ -14,9 +18,17 @@ const db = mysql.createConnection({
     database: process.env.DB_DBNAME
 });
 
-// Express Middleware
-app.use(express.json());
-app.use(cors());
+// Upload Image
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, 'uploads');
+    },
+    filename: function (req, file, cb) {
+      cb(null, Date.now() + file.originalname);
+    }
+  });
+
+  const upload = multer({ storage });
 
 // Test Api
 app.get("/", (req, res) => {
@@ -38,6 +50,25 @@ app.post("/books", (req, res) =>{
         return res.json("Book has been created successfully");
     });
 });
+
+app.use('/uploads', express.static('uploads'));
+
+// Upload books cover image db - UPLOAD
+app.post("/books", upload.single("image"), (req, res) => {
+    const { title, desc, price } = req.body;
+    const image = req.file.filename;
+
+    const q = "INSERT INTO books (title, `desc`, price, cover) VALUES (?, ?, ?, ?)";
+    const values = [title, desc, price, image];
+
+    db.query(q, values, (err, data) => {
+      if (err) {
+        console.log(err);
+        return res.send(err);
+      }
+      return res.json(data);
+    });
+  });
 
 // Get books from db - READ
 app.get("/books", (req, res) => {
