@@ -34,7 +34,7 @@ function Books() {
        <div className="books">
         {books.map(book =>(
             <div className="book" key={book.id}>
-                {book.cover && <img src={book.cover} alt="" />}
+                <img src={ process.env.REACT_APP_DB_UPLOADS+`${book.cover}`} alt="Book Cover" />
                 <h2>{book.title}</h2>
                 <p>{book.desc}</p>
                 <span>{book.price}</span>

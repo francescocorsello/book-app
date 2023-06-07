@@ -1,7 +1,7 @@
 import * as dotenv from 'dotenv'
 dotenv.config()
 import  express  from "express";
-import mysql from "mysql";
+import mysql2 from "mysql2";
 import cors from "cors";
 import multer from "multer";
 
@@ -11,7 +11,7 @@ app.use(express.json());
 app.use(cors());
 
 // Database connection
-const db = mysql.createConnection({
+const db = mysql2.createConnection({
     host: process.env.DB_HOST,
     user: process.env.DB_USERNAME,
     password: process.env.DB_PASSWORD,
@@ -54,11 +54,11 @@ app.post("/books", (req, res) =>{
 app.use('/uploads', express.static('uploads'));
 
 // Upload books cover image db - UPLOAD
-app.post("/books", upload.single("image"), (req, res) => {
+app.post('/books/upload', upload.single('image'), (req, res) => {
     const { title, desc, price } = req.body;
     const image = req.file.filename;
 
-    const q = "INSERT INTO books (title, `desc`, price, cover) VALUES (?, ?, ?, ?)";
+    const q = 'INSERT INTO books (title, `desc`, price, cover) VALUES (?, ?, ?, ?)';
     const values = [title, desc, price, image];
 
     db.query(q, values, (err, data) => {
