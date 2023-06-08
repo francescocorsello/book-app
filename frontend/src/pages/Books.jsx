@@ -30,14 +30,14 @@ function Books() {
    }
   return (
     <div>
-       <h1>AI Books</h1>
+       <h1>AI Comics</h1>
        <div className="books">
         {books.map(book =>(
             <div className="book" key={book.id}>
                 <img src={ process.env.REACT_APP_DB_UPLOADS+`${book.cover}`} alt="Book Cover" />
                 <h2>{book.title}</h2>
                 <p>{book.desc}</p>
-                <span>{book.price}</span>
+                <span>{book.price}$</span>
                 <button className='delete' onClick={() => handleDelete(book.id)}>Delete</button>
                 <button className='update'> <Link className='updateLink' to={`/update/${book.id}`}>Update</Link></button>
             </div>
