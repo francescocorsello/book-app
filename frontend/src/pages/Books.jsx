@@ -2,8 +2,6 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 
-
-
 function Books() {
     const [books, setBooks] = useState([])
 
@@ -34,7 +32,7 @@ function Books() {
        <div className="books">
         {books.map(book =>(
             <div className="book" key={book.id}>
-                <img src={ process.env.REACT_APP_DB_UPLOADS+`${book.cover}`} alt="Book Cover" />
+                <img src={process.env.REACT_APP_DB_UPLOADS+`${book.cover}`} alt="Book Cover" />
                 <h2>{book.title}</h2>
                 <p>{book.desc}</p>
                 <span>{book.price}$</span>
