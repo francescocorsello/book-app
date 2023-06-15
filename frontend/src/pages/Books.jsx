@@ -27,7 +27,7 @@ function Books() {
         }
    }
   return (
-    <div>
+    <div >
        <h1>AI Comics</h1>
        <div className="books">
         {books.map(book =>(
