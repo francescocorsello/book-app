@@ -4,6 +4,12 @@ import  express  from "express";
 import mysql2 from "mysql2";
 import cors from "cors";
 import multer from "multer";
+import path from 'path';
+import { fileURLToPath } from 'url';
+import { dirname, join } from 'path';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const app = express();
 // Express Middleware
@@ -51,7 +57,8 @@ app.post("/books", (req, res) =>{
     });
 });
 
-app.use('/uploads', express.static('uploads'));
+
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')))
 
 // Upload books cover image db - UPLOAD
 app.post('/books/upload', upload.single('image'), (req, res) => {
