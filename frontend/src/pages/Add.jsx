@@ -21,7 +21,7 @@ const Add = () => {
   const handleClick = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:8800/books", book);
+      await axios.post(process.env.REACT_APP_DB_ENDPOINT, book);
       navigate("/");
     } catch (err) {
       console.log(err);
