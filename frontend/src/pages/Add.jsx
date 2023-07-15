@@ -31,33 +31,33 @@ const Add = () => {
 
   return (
     <div className="form">
-      <h1>Add New Book</h1>
+      <h1>Add New Comic</h1>
       <input
         type="text"
-        placeholder="Book title"
+        placeholder="Comic title"
         name="title"
         onChange={handleChange}
       />
       <textarea
         rows={5}
         type="text"
-        placeholder="Book desc"
+        placeholder="Comic desc"
         name="desc"
         onChange={handleChange}
       />
       <input
         type="number"
-        placeholder="Book price"
+        placeholder="Comic price"
         name="price"
         onChange={handleChange}
       />
       <input
         type="text"
-        placeholder="Book cover"
+        placeholder="Comic cover"
         name="cover"
         onChange={handleChange}
       />
-      <button onClick={handleClick}>Add</button>
+      <button className="formButton" onClick={handleClick}>Add</button>
       {error && "Something went wrong!"}
       <Link to="/">See all books</Link>
     </div>
